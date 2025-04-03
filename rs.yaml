@@ -1,0 +1,20 @@
+piVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: cart-page-rs
+  namespace: sanjana-ns
+spec:
+  replicas: 3 #it defines the no.of replicas we need
+  selector:
+    matchLabels:
+      web: cart
+  template: #It defines wich appln we have to deploy in cluster(pod defn)
+    metadata:
+      labels:
+        web: cart
+    spec: #it defines behaviour of the pod and its container
+      containers:
+        - name: myapp
+          image: muralisocial123/cart-page-test:1.0
+          ports:
+            -  containerPort: 3000
